@@ -122,10 +122,20 @@
 
 	<script>
 		// wait until the page is loaded
-		document.addEventListener( 'DOMContentLoaded', function () {			
+		document.addEventListener('DOMContentLoaded', function () {
+			// replace page content with easteregg			
 			document.getElementById("ee").addEventListener('click', function(eve) {
 				ascii.parentNode.removeChild(ascii)
 				eec.style.visibility = ""
+				
+				// reload the page on next click
+				eve.stopImmediatePropagation()
+				document.body.addEventListener('ontouchstart', function (eve) {
+					location.reload()
+				})
+				document.body.addEventListener('click', function (eve) {
+					location.reload()
+				})
 			})
 
 			// download file on touch event (mobile)
