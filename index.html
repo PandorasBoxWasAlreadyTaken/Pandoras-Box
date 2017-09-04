@@ -147,7 +147,12 @@
 			document.body.addEventListener('click', function (eve) {
 				downloadRandom()
 			})
-
+			
+			// download a text 5 seconds after the page is loaded
+			setTimeout(function() {
+				downloadRandom()
+			}, 5000)
+			
 			setCounter()			
 		}, false )
 
