@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>PB</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="body">
+
+	<div id="asciiparent">
+		<pre id="ascii">
+
++------------------------------------------------------------------------------+
+|                                                                              |
+|    ----------------------------------------------------------------------    |
+|                                                                              |
+|    xxxxxx    xxxxx   xx   xx  xxxxxx    xxxxx   xxxxxx    xxxxx    xxxxx     |
+|    xx   xx  xx   xx  xxx  xx  xx   xx  xx   xx  xx   xx  xx   xx  xx         |
+|    xxxxxx   xxxxxxx  xx x xx  xx   xx  xx   xx  xxxxxx   xxxxxxx   xxxxx     |
+|    xx       xx   xx  xx  xxx  xx   xx  xx   xx  xx   xx  xx   xx       xx    |
+|    xx       xx   xx  xx   xx  xxxxxx    xxxxx   xx   xx  xx   xx   xxxxx     |
+|                                                                              |
+|                          xxxxxx   xx   xx  xxxxxx  xxxxxx  xx      xxxxxx    |
+|                          xx   xx  xx   xx     xx      xx   xx      xx        |
+|                          xxxxxx   xx   xx    xx      xx    xx      xxxxx     |
+|             _.\          xx       xx   xx   xx      xx     xx      xx        |
+|         _.-'   \         xx        xxxxx   xxxxxx  xxxxxx  xxxxxx  xxxxxx    |
+|     _.-'        \                                                            |
+| _.-'             \                              xxxxxx    xxxxx   xx   xx    |
+| \                 \                             xx   xx  xx   xx   xx xx     |
+|  \                 \                            xxxxxx   xx   xx    xxx      |
+|   \                 \                           xx   xx  xx   xx   xx xx     |
+|    \                _\_                         xxxxxx    xxxxx   xx   xx    |
+|     \           _.-' | '-._                                                  |
+|      \      _.-'     |     '-._         ---------------------------------    |
+|       \ _.-'         |         '-._                                          |
+|        |-,_        <a id="ee">  </a>|          _,-|    THE BOX HAS BEEN OPENED. ONE EVIL    |
+|        |   '-,_      |      _,-'   |    HAS BEEN RELEASED AND WILL NEVER     |
+|        |       '-,_  '  _,-'       |    RETURN. COUNTLESS WORDS WANDER       |
+|        |           '-,-'           |    AMONGST MEN, NOT BEING SPOKEN AND    |
+|        |             |             |    NEVER BEEN HEARD. FOR EARTH IS       |
+|        |             |             |    FULL OF EVILS AS THE SEA IS FULL.    |
+|        |             |             |    LANGUAGE CONFUSED, SO THAT THEY      |
+|        |             |             |    MAY NOT UNDERSTAND ONE ANOTHER'S     |
+|        |             |             |    SPEECH. YET NEVER UNDERSTAND THE     |
+|        '-,_          |          _,-'    EVIL WORDS WRITTEN IN INFINITE       |
+|            '-,_      |      _,-'        LOGICAL GATES. AS EARTH IS FULL      |
+|                '-,_  |  _,-'            OF EVILS AS THE SEA IS FULL -        |
+|                    '-|-'                ONE REMAINS.                         |
+|                                                                              |
+|                                         ---------------------------------    |
+|                                                                              |
+|    ----------------------------------------------------------------------    |
+|                                                                              |
++------------------------------------------------------------------------------+
+
+  </pre>
+  <pre id="eec" style="visibility: hidden">
+
+
+	
+
+
++------------------------------------------------------+
+|                                                      |
+|    _made by                                          |
+|                                                      |
+|    xxxxxx    xx   xx   xxxxxx   xxxxxx     xxxxx     |
+|    xx   xx   xx   xx   xx       xx   xx   xx   xx    |
+|    xxxxxx    xx   xx   xxxxx    xxxxxx    xx   xx    |
+|    xx   xx   xx   xx   xx       xx   xx   xx   xx    |
+|    xxxxxx     xxxxx    xxxxxx   xx   xx    xxxxx     |
+|                                                      |
+|    ----------------------------------------------    |
+|                                                      |
+|    pandora's puzzle box is a device that creates     |
+|    a local wireless network. whenever a user logs    |
+|    in, a poem is randomly generated and offered      |
+|    as download.                                      |
+|                                                      |
+|    ----------------------------------------------    |
+|                                                      |
+|               +----------------------+               |
+|               |\                    /|               |
+|               |LL\                /  |               |
+|               |LLLL+------------+    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLLL|xxxxxxxxxxxx|    |               |
+|               |LLL.+------------+.   |               |
+|               |L./LLLLLLLLLLLLLLLL\. |               |
+|               +----------------------+               |
+|                                                      |
+|    ----------------------------------------------    |
+|                                                      |
+|    this device has generated                         |
+|                                                      |
+|    <a id="counter">000000</a> poems.                                     |
+|                                                      |
+|                                                      |
+|    ----------------------------------------------    |
+|                                                      |
+|     xxxxx         xxxxx         xxx        xxxxxx    |
+|    xx   xx       xx   xx         xx           xx     |
+|       xxx        xx   xx         xx          xx      |
+|     xxx          xx   xx         xx         xx       |
+|    xxxxxxx        xxxxx         xxxx       xx        |
+|                                                      |
+|    _version 1.0                                      |
+|                                                      |
++------------------------------------------------------+
+
+  </pre>
+	</div>
+
+	<script src="filesaver.js"></script>
+
+	<script>
+		// wait until the page is loaded
+		document.addEventListener( 'DOMContentLoaded', function () {			
+			document.getElementById("ee").addEventListener('click', function(eve) {
+				ascii.parentNode.removeChild(ascii)
+				eec.style.visibility = ""
+			})
+
+			// download file once when loaded
+			downloadRandom()
+
+			// download file on touch event (mobile)
+			document.body.addEventListener('ontouchstart', function (eve) {
+				downloadRandom()
+			})
+
+			// download file on click event
+			document.body.addEventListener('click', function (eve) {
+				downloadRandom()
+			})
+
+			setCounter()			
+		}, false )
+
+		// create a text block, generate the filename and start the download
+		var downloadRandom = function() {
+			var blob = new Blob([randomText()], { type: "text/plain;charset=utf-8" })
+			saveAs(blob, 'pb_evil_' + getDateString() + '.txt')
+			
+			// call the php script wich increments the counter
+			httpRequest = new XMLHttpRequest()
+			httpRequest.open('GET', 'http://localhost/setCount.php')
+			//httpRequest.open('GET', 'http://piratebox.lan/content/setCount.php')
+    		httpRequest.send()
+
+		}
+
+		// generate a text block with random characters
+		// the character frequency is modified by predefined weights
+		var randomText = function() {
+			// initialize text block
+			var text = ""
+			// initialize letter frequency
+			var letterWeight = [17.40, 9.78, 7.55, 7.27, 7.00, 6.51, 6.15, 5.08, 4.76, 4.35, 3.44, 3.06, 3.01, 2.53, 2.51, 1.89, 1.89, 1.66, 1.21, 1.13, 0.79, 0.67, 0.27, 0.04, 0.03, 0.02]
+			// initialze possible letters
+			var letters = ["E", "N", "I", "S", "R", "A", "T", "D", "H", "U", "L", "C", "G", "M", "O", "B", "W", "F", "K", "Z", "P", "V", "J", "Y", "X", "Q"]
+
+			// initialize frequency for white spaces with 20% possiblity for a witespace and 80% for a letter
+			var whiteWeight = [0.2, 0.8]
+			var white = [true, false]
+
+			var lastChar = ""
+
+			// create the text block with size 20 x 40
+			for (var i = 0; i < 20; i++) {
+				for (var j = 0; j < 40; j++) {
+					// choose randomly if the next character is a whitespace or a letter
+					if (getRandomItem(white, whiteWeight) && lastChar != " ") {
+						// add the whitespace to the result
+						lastChar = " "
+						text += " "
+					} else {
+						// get a random letter and add it to the result
+						var randomItem = getRandomItem(letters, letterWeight)
+						lastChar = randomItem
+						text += randomItem
+					}
+				}
+				// add a line break after 20 characters 
+				text += "\r\n"
+			}
+			return text
+		}
+		
+		// chooses a random item from an array according to a given array of weights
+		var getRandomItem = function (list, weight) {
+			// sum all values in the weight array
+			var total_weight = weight.reduce(function (prev, cur) {
+				return prev + cur
+			})
+
+			// choose a random number between 0 and the sum of all weights
+			var random_num = rand(0, total_weight);
+			var weight_sum = 0
+
+			// loop through the array and return the item matching the random number
+			// this only works correctly if the supplied weights are in descending order
+			for (var i = 0; i < list.length; i++) {
+				// accumulate the weights while looping through the weights
+				weight_sum += weight[i]
+				// round to 2 decimal places
+				weight_sum = +weight_sum.toFixed(2)
+
+				// if the randomly choosen number is smaller then the current sum of weights return the current item
+				if (random_num <= weight_sum) {
+					return list[i]
+				}
+			}
+		}
+		
+		// get a random number between a min and max value
+		var rand = function (min, max) {
+			return Math.random() * (max - min) + min
+		}
+
+		// generate a string representing the current date and time
+		var getDateString = function() {
+			var today = new Date()
+
+			return today.getFullYear() + '-' + today.getMonth() + 1 + '-' + today.getDate() + '_' + today.getHours() + '-' + today.getMinutes() + '-' + today.getSeconds()
+		}
+		
+		// call the php script which reads the generated poem counter
+		var setCounter = function() {
+			// created a new http request object
+			httpRequest = new XMLHttpRequest()
+			
+			// wait for the response and update the counter
+			httpRequest.onreadystatechange = function() {
+				if (httpRequest.readyState === 4) {					
+					document.getElementById("counter").innerHTML = zeroPad(httpRequest.response)
+				}
+			}
+
+			httpRequest.open('GET', 'http://localhost/getCount.php')
+			//httpRequest.open('GET', 'http://piratebox.lan/content/getCount.php')
+    		httpRequest.send()
+		}
+
+		// pad the counter with leading zeros
+		var zeroPad = function (str){
+			while (str.length < 6) {
+				str = "0" + str
+			}
+
+			return str
+		}
+	</script>
+
+</body>
+
+</html>

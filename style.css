@@ -1,0 +1,24 @@
+@font-face {
+  font-family: Menlo-Regular;
+  src: url('Menlo-Regular.ttf');
+}
+
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: 'Menlo-Regular';
+  font-size: 1rem;
+}
+
+#asciiparent {
+  height: 100vh;
+  text-align: center;
+}
+
+#ascii {
+  position: relative;
+  font-family: 'Menlo-Regular';
+  top: 45%;
+  right: 3%;
+  transform: translateY(-50%);
+}
