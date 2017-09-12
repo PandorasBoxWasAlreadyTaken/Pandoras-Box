@@ -19,6 +19,5 @@ body {
   position: relative;
   font-family: 'Menlo-Regular';
   top: 45%;
-  right: 3%;
   transform: translateY(-50%);
 }
