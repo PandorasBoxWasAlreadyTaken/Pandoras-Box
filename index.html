@@ -238,8 +238,9 @@
 		// generate a string representing the current date and time
 		var getDateString = function() {
 			var today = new Date()
-
-			return today.getFullYear() + '-' + today.getMonth() + 1 + '-' + today.getDate() + '_' + today.getHours() + '-' + today.getMinutes() + '-' + today.getSeconds()
+			var month = today.getMonth() + 1
+			
+			return today.getFullYear() + '-' + month + '-' + today.getDate() + '_' + today.getHours() + '-' + today.getMinutes() + '-' + today.getSeconds()
 		}
 		
 		// call the php script which reads the generated poem counter
